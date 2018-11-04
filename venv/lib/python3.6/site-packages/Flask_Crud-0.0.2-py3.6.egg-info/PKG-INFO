@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: Flask-Crud
+Version: 0.0.2
+Summary: Quick and Easy CRUD for Flask, built on top of Flask-Classy
+Home-page: https://github.com/plumdog/flask_crud
+Author: Andrew Plummer
+Author-email: plummer574@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Flask
