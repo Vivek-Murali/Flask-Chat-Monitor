@@ -1,0 +1,8 @@
+Message,Messege_id,Negative,Positive,Username,datetime
+dvkbvsk,<sqlite3.Row object at 0x7f5116328e30>,b'0.2',b'0.6',Redalert,2018-11-08 15:09:41.518832
+<sqlite3.Row object at 0x7f8c40e6e930>,Redalert,b'0.6',Collection updates through tweets ,b'0.2',2018-11-08 15:21:23.647372
+<sqlite3.Row object at 0x7f8c40e6ec30>,Redalert,b'0.6',dv,b'0.2',2018-11-08 15:21:28.163294
+<sqlite3.Row object at 0x7f8c40e6e9f0>,Redalert,b'0.6',testing out without old html........,b'0.2',2018-11-08 15:21:31.737567
+testing out without old html........,<sqlite3.Row object at 0x7f23495aead0>,b'0.6',Redalert,b'0.2',2018-11-08 15:25:25.463627
+Collection updates through tweets ,<sqlite3.Row object at 0x7f56d90bcbb0>,SmokeStream,b'0.6',b'0.2',2018-11-08 15:27:22.022462
+Collection updates through tweets ,<sqlite3.Row object at 0x7f85b8abb950>,b'0.2',b'0.6',SmokeStream,2018-11-08 15:29:39.911544

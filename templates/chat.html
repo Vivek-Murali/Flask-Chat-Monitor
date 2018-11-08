@@ -17,13 +17,13 @@
     <hr style="type:bold">
     {% if results|length > 0 %}
     {% for result in results %}
-     <a href="/view_user_all/" style="color:#800020;">{{result["username"]}}</a>
-               <p>{{result["messege"]}}</p>
+     <a href="/view_user_all/{{ result['room_id']}}" style="color:#800020;">{{result["username"]}}</a>
+               <p>{{result["messeges"]}}</p>
     {% endfor %}
     {% else %}
         <h4>There aren't any Chrips yet! </h4>
     {% endif %}
-     <form  id="new-blog" action="/view_user_all/" method="post">
+     <form  id="new-blog" action="{{ url_for('chat_datainsert')}}" method="post">
          <div class="col-xs-4">
         <div  class="form-group">
             <label for="description">Description</label>
@@ -31,8 +31,8 @@
         </div>
          </div>
         </div>
+
         <button type="submit" class="btn btn-success">Create Chrip</button>
     </form>
-
 </div>
 {% endblock %}
