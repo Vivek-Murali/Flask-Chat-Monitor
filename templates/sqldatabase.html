@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+       <div class ='row'>
+
+
+        {% if 'query_edit' in request.url %}
+        {% for eresult in eresults %}
+        <br>
+           <br>
+           <form action = "edit" method = "POST">
+         <p>First Name: <input class="form-control" type = "text" name = "first_name" style='width: 100%;' value='{{eresult["first_name"]}}'/></p>
+         <p>Last Name: <input class="form-control" type = "text" name = "last_name" style='width: 100%;' value='{{eresult["last_name"]}}' /></p>
+         <p>Email: <input class="form-control" type = "text" name = "email" style='width: 100%;' value='{{eresult["email"]}}' /></p>
+         <p>Username: <input class="form-control" type = "text" name = "username" style='width: 100%;' value='{{eresult["username"]}}' /></p>
+         <p>Password: <input class="form-control" type ="text" name = "password" style='width: 100%;' value='{{eresult["password"]}}' /></p>
+         <p>Phone: <input class="form-control" type ="text" name = "phone" style='width: 100%;' value='{{eresult["phone"]}}' /></p>
+         <input type ="hidden" name = "old_first_name" value='{{eresult["first_name"]}}' />
+         <input type ="hidden" name = "old_last_name" value='{{eresult["last_name"]}}' />
+
+         {% endfor %}
+
+         <br>
+
+         <p><input class="btn-primary" type = "submit" value = "Update Data" /></p>
+        </form>
+        </div>
+
+        {% endif %}
+
+{% endblock content %}

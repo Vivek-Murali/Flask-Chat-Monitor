@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div>
+    <h3>Hello Admin,</h3>
+        <br>
+        <form action = "insert" method = "POST">
+         <p>First Name: <input class="form-control" type = "text" name = "first_name" style='width: 100%;' /></p>
+         <p>Last Name: <input class="form-control" type = "text" name = "last_name" style='width: 100%;' /></p>
+         <p>Email: <input class="form-control" type = "text" name = "email" style='width: 100%;' /></p>
+         <p>Username: <input class="form-control" type = "text" name = "username" style='width: 100%;' /></p>
+         <p>Password: <input class="form-control" type ="text" name = "password" style='width: 100%;' /></p>
+         <p>Phone: <input class="form-control" type ="text" name = "phone" style='width: 100%;' /></p>
+         <br>
+
+         <p><input class="btn-primary" type = "submit" value = "Insert Data" /></p>
+        </form>
+        </div>
+
+{% endblock %}

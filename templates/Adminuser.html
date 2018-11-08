@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<br><br>
+        <a href="/useradd">Insert New Record</a>
+        <div class="alert alert-success" role="alert" style='width: 90%; margin-left: 100px;'>
+        <strong>Check it out!</strong> Here is your data table below ...
+        </div>
+
+      <table class = 'table table-hover' style = 'margin-left: 100px; margin-right: 100px; width: 90%;'>
+         <thead>
+            <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Phone</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+            </tr>
+         </thead>
+
+         {% for result in results %}
+            <tr>
+               <td>{{result["first_name"]}}</td>
+               <td>{{result["last_name"]}}</td>
+               <td>{{result["email"]}}</td>
+               <td>{{result['username']}}</td>
+               <td>{{result['password']}}</td>
+               <td>{{result['phone']}}</td>
+                <td align="center"><a href = "{{ url_for('sql_editlink', eusername=result['username']) }}">Edit</a></td>
+                <td align="center"><a href = "{{ url_for('sql_datadelete', username=result['username']) }}">Delete</a></td>
+            </tr>
+         {% endfor %}
+      </table>
+{% endblock %}

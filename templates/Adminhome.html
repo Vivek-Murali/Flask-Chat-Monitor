@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<h3>Welcome {{username}}</h3>
+<h3>Set of database available</h3>
+<ul>
+<li><a href="/Admin">Users Table</a></li>
+</ul>
+{% endblock %}

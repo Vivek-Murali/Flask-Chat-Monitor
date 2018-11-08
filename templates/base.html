@@ -22,7 +22,8 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cardo" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
 <section class="banner-area" id="home">
@@ -58,7 +59,7 @@
 
             {% if session['logged_in'] == True %}
                     <li><a href="/profile/{{ username }}">{{username}}</a></li>
-                    {{ nav_link('logout_user', 'Sign Out') }}
+                    {{ nav_link('logout', 'Sign Out') }}
             {% else %}
                     {{ nav_link('login_template', 'Sign IN') }}
                     {{ nav_link('register_template', 'Sign Up') }}

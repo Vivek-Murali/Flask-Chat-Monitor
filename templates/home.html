@@ -8,66 +8,30 @@
   {{ super() }}
 {% endblock %}
 {% block content %}
-<br/>
-<div class="container"><h3>Hello,<span style="color:blue"><img src="{{ avatars.gravatar(picture, size=20) }}">  {{ username }}</span></h3>
-     <h4>What kind of recommendations you want this {{Time}}??</h4></div>
+<script type="text/javascript">
+$(document).ready(function() {
 
-<br/>
-    <br/>
-    <div class="container">
-    <div class="col-md-1"></div>
-<a href="/food_rec"><div class="col-md-10 jumbotron" style="background-image: url({{ url_for('static', filename='img/food_img.jpg') }});background-size: cover; background-repeat: no-repeat;">
-    <br/>
-    <br/>
-    <span style="text-align:center; font-style:italic; color:black;"> <h4>Food Recommendations</h4></span>
-    <br/>
-</div></a>
-    <div class="col-md-1"></div>
-</div>
+	var socket = io.connect('http://127.0.0.1:5000');
 
-     <div class="container">
-    <div class="col-md-1"></div>
-  <a href="/travel_choice"> <div class="col-md-10 jumbotron" style="background-image: url({{ url_for('static', filename='img/trave_img.jpg') }});background-size: cover; background-repeat: no-repeat;">
-    <br/>
-    <br/>
-    <span style="text-align:center; font-style:italic; color:black;"> <h4>Travel Recommendations</h4></span>
-    <br/>
-  </div>
-    <div class="col-md-1"></div>
-</div>
+	socket.on('connect', function() {
+		socket.send('User has connected!');
+	});
 
-     <div class="container">
-    <div class="col-md-1"></div>
-  <a href="/city_map1"><div class="col-md-10 jumbotron" style="background-image: url({{ url_for('static', filename='img/hotel_img.jpg') }});background-size: cover; background-repeat: no-repeat;">
-    <br/>
-    <br/>
-     <span style="text-align:center; font-style:italic; color:black;"> <h4>Hotel Recommendations</h4></span>
-    <br/>
-  </div>
-    <div class="col-md-1"></div>
-</div>
+	socket.on('message', function(msg) {
+		$("#messages").append('<li>'+msg+'</li>');
+		console.log('Received message');
+	});
 
-     <div class="container">
-    <div class="col-md-1"></div>
-  <a href="/city_map"><<div class="col-md-10 jumbotron" style="background-image: url({{ url_for('static', filename='img/poi_img.jpg') }});background-size: cover; background-repeat: no-repeat;">
-    <br/>
-    <br/>
-    <span style="text-align:center; font-style:italic; color:black;"> <h4>Place Recommendations</h4></span>
-    <br/>
-  </div>
-    <div class="col-md-1"></div>
-</div>
+	$('#sendbutton').on('click', function() {
+		socket.send($('#myMessage').val());
+		$('#myMessage').val('');
+	});
 
-<div class="container">
-    <div class="col-md-1"></div>
-   <a href="/city_map2"><div class="col-md-10 jumbotron" style="background-image: url({{ url_for('static', filename='img/rest_img.jpg') }});background-size: cover; background-repeat: no-repeat;">
-    <br/>
-    <br/>
-    <span style="text-align:center; font-style:italic; color:black;"> <h4>Restaurant Recommendations</h4></span>
-    <br/>
-  </div>
-    <div class="col-md-1"></div>
-</div>
+});
+</script>
+<ul id="messages"></ul>
+<input type="text" id="myMessage">
+<button id="sendbutton">Send</button>
 
 {% endblock %}
 
