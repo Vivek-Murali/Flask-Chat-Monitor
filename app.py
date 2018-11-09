@@ -11,8 +11,13 @@ from nltk.corpus import names
 import pandas as pd
 import datetime
 import csv
+import collections
+import nltk.classify.util, nltk.metrics
+from nltk.classify import NaiveBayesClassifier
+from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
-
+nltk.download('stopwords')
+nltk.download('punkt')
 __author__ = 'Jetfire'
 
 sys.path.insert(1, "PATH TO LOCAL PYTHON PACKAGES")
@@ -92,6 +97,12 @@ def sql_database():
     msg = 'SELECT * FROM data_table'
     return render_template('Adminuser.html', results=results)
 
+
+@app.route('/Admin_chat')
+def chat_database():
+    results = sql_query(''' SELECT * FROM chats''')
+    return render_template('admin_chat.html', results=results, username=session['username'])
+
 @app.route('/useradd')
 def sql_add():
     return render_template('useradd.html')
@@ -120,11 +131,17 @@ def chat_datainsert():
     date_msg = datetime.datetime.utcnow()
     sql_edit_insert(''' INSERT INTO chats (messege, username) VALUES (?,?) ''', (messege,username))
     results = sql_query(''' SELECT * FROM chats''')
-    print(results[0])
     pop = results[0]
-    positive_vocab = ['awesome', 'outstanding', 'fantastic', 'terrific', 'good', 'nice', 'great', ':)']
-    negative_vocab = ['bad', 'terrible', 'useless', 'hate', ':(', 'Kill', 'Bomb', 'kill', 'murder']
+    '''positive_vocab = ['awesome', 'outstanding', 'fantastic', 'terrific', 'good', 'nice', 'great', ':)', 'cool', 'pretty']
+    negative_vocab = ['bad', 'terrible', 'useless', 'hate', ':(', 'Kill', 'Bomb', 'kill', 'murder', 'bash']
     neutral_vocab = ['movie', 'the', 'sound', 'was', 'is', 'actors', 'did', 'know', 'words', 'not']
+    data1 = {'positive_vocab':positive_vocab, 'negative_vocab':negative_vocab,'neutral_vocab':neutral_vocab}
+    df1 = pd.DataFrame(data1)
+    df1.to_csv('stopwords', index=False)'''
+    df1 = pd.read_csv('stopwords.csv')
+    positive_vocab = df1['positive_vocab']
+    negative_vocab = df1['negative_vocab']
+    neutral_vocab = df1['neutral_vocab']
     positive_features = [(word_feats(pos), 'pos') for pos in positive_vocab]
     negative_features = [(word_feats(neg), 'neg') for neg in negative_vocab]
     neutral_features = [(word_feats(neu), 'neu') for neu in neutral_vocab]
@@ -144,16 +161,42 @@ def chat_datainsert():
 
     Positive = str(float(pos) / len(words)).encode('utf-8')
     Negative = str(float(neg) / len(words)).encode('utf-8')
-    print(Positive)
-    print(Negative)
     #sql_edit_insert(''' INSERT INTO monitor (negitive, posivtive, id) VALUES (?,?,?) ''', (Negative, Positive, pop))
-    df = pd.DataFrame()
+    #df = pd.DataFrame()
     data = {"datetime":date_msg, "Positive":Positive, "Negative":Negative, "Username":username,"Messege_id":pop ,"Message":messege}
     #df = df.append(data, ignore_index=True)
     #df.to_csv("log.csv", index=False)
     with open('log.csv', "a") as csvfile:
         headers = ['Message','Messege_id', 'Negative', 'Positive', 'Username', 'datetime']
         writer = csv.DictWriter(csvfile, delimiter=',', lineterminator='\n', fieldnames=headers)
+        writer.writerow(data)
+
+    posids = df1['positive_vocab']
+    negids = df1['negative_vocab']
+    stopset = set(stopwords.words('english'))
+    messege1 = word_tokenize(messege)
+    wordsFiltered = []
+    for w in messege1:
+        if w not in stopset:
+            wordsFiltered.append(w)
+
+    for word in wordsFiltered:
+        classResult = classifier.classify(word_feats(word))
+        if classResult == 'neg':
+            neg = neg + 1
+        if classResult == 'pos':
+            pos = pos + 1
+
+    Positive = str(float(pos) / len(words)).encode('utf-8')
+    Negative = str(float(neg) / len(words)).encode('utf-8')
+    data1 = {"datetime": date_msg, "Positive": Positive, "Negative": Negative, "Username": username, "Messege_id": pop,
+            "Message": messege}
+    #df2 = pd.DataFrame()
+    #df2 = df2.append(data, ignore_index=True)
+    #df2.to_csv("message_pre.csv", index=False)
+    with open('message_pre.csv', "a") as csvfile1:
+        headers1 = ['Message','Messege_id', 'Negative', 'Positive', 'Username', 'datetime']
+        writer = csv.DictWriter(csvfile1, delimiter=',', lineterminator='\n', fieldnames=headers1)
         writer.writerow(data)
     return render_template('home.html', results=results, username=session['username'])
 
@@ -175,6 +218,15 @@ def sql_datadelete():
         username = request.args.get('username')
         sql_delete(''' DELETE FROM data_table where username = ? ''', (username,))
     results = sql_query(''' SELECT * FROM data_table''')
+    return render_template('Adminhome.html', results=results)
+
+
+@app.route('/delete_chat',methods = ['POST', 'GET']) #this is when user clicks delete link
+def chat_datadelete():
+    if request.method == 'GET':
+        messege_id = request.args.get('messege_id')
+        sql_delete(''' DELETE FROM chats where messege_id = ? ''', (messege_id,))
+    results = sql_query(''' SELECT * FROM chats''')
     return render_template('Adminhome.html', results=results)
 
 
@@ -204,15 +256,15 @@ def sql_dataedit():
     return render_template('sqldatabase.html', results=results)
 
 
-@socketio.on('message')
-def handleMessage(msg):
-    username = session['username']
-    print('Message from {0}: {1}'.format(username, msg))
-    send(msg, broadcast=True)
-
 def word_feats(words):
+    #stopset = set(stopwords.words('english'))
+    return dict([(word, True) for word in words])
+
+
+def stopword_filtered_word_feats(words):
     stopset = set(stopwords.words('english'))
     return dict([(word, True) for word in words if word not in stopset])
+
 
 
 if __name__== "__main__":

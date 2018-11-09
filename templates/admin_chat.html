@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<br><br>
+        <a href="/chatadd">Insert New Record</a>
+        <div class="alert alert-success" role="alert" style='width: 90%; margin-left: 100px;'>
+        <strong>Check it out!</strong> Here is your data table below ...
+        </div>
+
+      <table class = 'table table-hover' style = 'margin-left: 100px; margin-right: 100px; width: 90%;'>
+         <thead>
+            <tr>
+            <th>Message ID</th>
+            <th>Message</th>
+            <th>Username</th>
+            <th>DELETE</th>
+            </tr>
+         </thead>
+
+         {% for result in results %}
+            <tr>
+               <td>{{result["messege_id"]}}</td>
+               <td>{{result["messege"]}}</td>
+               <td>{{result["username"]}}</td>
+                <td align="center"><a href = "{{ url_for('chat_datadelete', messege_id=result['messege_id']) }}">Delete</a></td>
+            </tr>
+         {% endfor %}
+      </table>
+{% endblock %}

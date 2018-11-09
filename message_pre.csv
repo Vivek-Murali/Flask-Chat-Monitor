@@ -1,0 +1,3 @@
+Message,Messege_id,Negative,Positive,Username,datetime
+tweets about football,<sqlite3.Row object at 0x7f32157d4a70>,b'0.2',b'0.4',Redalert,2018-11-09 13:25:08.302632
+tweets about football,<sqlite3.Row object at 0x7f32157d4a70>,b'0.2',b'0.4',Redalert,2018-11-09 13:25:08.302632

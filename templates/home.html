@@ -9,20 +9,16 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <h2>{{ username }}'s Chrips</h2>&nbsp;
+    <h2>{{ username }}'s Chatroom</h2>&nbsp;
     <br>
         <br>
 <br>
     <br>
     <hr style="type:bold">
-    {% if results|length > 0 %}
     {% for result in results %}
-     <a href="/view_user_all/" style="color:#800020;">{{result["username"]}}</a>
+    <p><span style="color:red;">{{result["username"]}}</span></p>
                <p>{{result["messege"]}}</p>
     {% endfor %}
-    {% else %}
-        <h4>There aren't any Chrips yet! </h4>
-    {% endif %}
      <form  id="new-blog" action="/view_user_all/" method="post">
          <div class="col-xs-4">
         <div  class="form-group">

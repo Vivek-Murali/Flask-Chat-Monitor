@@ -6,3 +6,18 @@ dvkbvsk,<sqlite3.Row object at 0x7f5116328e30>,b'0.2',b'0.6',Redalert,2018-11-08
 testing out without old html........,<sqlite3.Row object at 0x7f23495aead0>,b'0.6',Redalert,b'0.2',2018-11-08 15:25:25.463627
 Collection updates through tweets ,<sqlite3.Row object at 0x7f56d90bcbb0>,SmokeStream,b'0.6',b'0.2',2018-11-08 15:27:22.022462
 Collection updates through tweets ,<sqlite3.Row object at 0x7f85b8abb950>,b'0.2',b'0.6',SmokeStream,2018-11-08 15:29:39.911544
+tweets about football,<sqlite3.Row object at 0x7f6868ef7df0>,b'0.2',b'0.6',Redalert,2018-11-09 05:09:27.818142
+tweets about football,<sqlite3.Row object at 0x7feeef757710>,b'0.2',b'0.4',Redalert,2018-11-09 12:28:29.221933
+tweets about football,<sqlite3.Row object at 0x7f217644cab0>,b'0.2',b'0.4',Redalert,2018-11-09 12:31:04.429640
+dvkbvsk,<sqlite3.Row object at 0x7f066b016830>,b'0.2',b'0.4',Redalert,2018-11-09 12:33:04.581140
+dvkbvsk,<sqlite3.Row object at 0x7fba827b0670>,b'0.2',b'0.4',Redalert,2018-11-09 12:34:35.498418
+Collection updates through tweets ,<sqlite3.Row object at 0x7fba827b0cd0>,b'0.2',b'0.4',Redalert,2018-11-09 12:35:43.821453
+Collection updates through tweets ,<sqlite3.Row object at 0x7fba827a5e90>,b'0.2',b'0.4',Redalert,2018-11-09 12:36:24.191073
+tweets about football,<sqlite3.Row object at 0x7f7daf8c4ed0>,b'0.2',b'0.4',Redalert,2018-11-09 13:05:05.501361
+tweets about football,<sqlite3.Row object at 0x7f7042339670>,b'0.2',b'0.4',Redalert,2018-11-09 13:06:27.250255
+tweets about football,<sqlite3.Row object at 0x7f2185e375d0>,b'0.2',b'0.4',Redalert,2018-11-09 13:07:06.771069
+tweets about football,<sqlite3.Row object at 0x7f15318bcbf0>,b'0.2',b'0.4',Redalert,2018-11-09 13:09:56.600799
+tweets about football,<sqlite3.Row object at 0x7f6c8047fad0>,b'0.2',b'0.4',Redalert,2018-11-09 13:20:22.777445
+tweets about football,<sqlite3.Row object at 0x7fd0e44dd6f0>,b'0.2',b'0.4',Redalert,2018-11-09 13:21:15.467735
+tweets about football,<sqlite3.Row object at 0x7f2df0fb86d0>,b'0.2',b'0.4',Redalert,2018-11-09 13:21:39.152490
+tweets about football,<sqlite3.Row object at 0x7f32157d4a70>,b'0.2',b'0.4',Redalert,2018-11-09 13:25:08.302632
