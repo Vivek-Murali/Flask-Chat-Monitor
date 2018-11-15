@@ -38,6 +38,22 @@ def login_template():
     return render_template('login.html')
 
 
+@app.route('/home_template')
+def home_template():
+    return render_template('home.html', username=session['username'])
+
+
+@app.route('/profile/<string:username>')
+def profile_template(username):
+    results = sql_query3(''' SELECT * FROM data_table where username = ?''', (username,))
+    messages = sql_query3(''' SELECT * FROM chats where username = ?''', (username,))
+    print(results[1])
+    print(messages[3])
+    return render_template('profile.html', username=session['username'], results=results,
+                           messages = messages)
+
+
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
@@ -129,7 +145,7 @@ def chat_datainsert():
     messege = request.form['description']
     username = session['username']
     date_msg = datetime.datetime.utcnow()
-    sql_edit_insert(''' INSERT INTO chats (messege, username) VALUES (?,?) ''', (messege,username))
+    sql_edit_insert(''' INSERT INTO chats (messege, username, date) VALUES (?,?,?) ''', (messege,username, date_msg))
     results = sql_query(''' SELECT * FROM chats''')
     pop = results[0]
     '''positive_vocab = ['awesome', 'outstanding', 'fantastic', 'terrific', 'good', 'nice', 'great', ':)', 'cool', 'pretty']
@@ -228,6 +244,27 @@ def chat_datadelete():
         sql_delete(''' DELETE FROM chats where messege_id = ? ''', (messege_id,))
     results = sql_query(''' SELECT * FROM chats''')
     return render_template('Adminhome.html', results=results)
+
+
+@app.route('/edit_profile',methods = ['POST', 'GET'])#this is when user clicks edit link
+def sql_editlink1():
+    return render_template('sqldatabase1.html',username = session['username'])
+
+
+@app.route('/edit_pro',methods = ['POST', 'GET']) #this is when user submits an edit
+def sql_dataedit1():
+    if request.method == 'POST':
+        last_name = request.form['last_name']
+        first_name = request.form['first_name']
+        address = request.form['email']
+        city = request.form['username']
+        state = request.form['password']
+        zip = request.form['phone']
+        username1 = session['username']
+        state1 = bcrypt.hashpw(state.encode('utf-8'),bcrypt.gensalt())
+        sql_edit_insert(''' UPDATE data_table set first_name=?,last_name=?,email=?,password=?,phone=? WHERE username=?  ''', (first_name,last_name,address,state1,zip, username1) )
+    results = sql_query(''' SELECT * FROM data_table''')
+    return render_template('profile.html', results=results)
 
 
 @app.route('/query_edit',methods = ['POST', 'GET'])#this is when user clicks edit link

@@ -48,7 +48,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
              {% if session['logged_in'] == True %}
-            {{ nav_link('index', 'Home') }}
               {% else %}
                {{ nav_link('index', 'Home') }}
               {% endif %}
@@ -59,6 +58,7 @@
 
             {% if session['logged_in'] == True %}
                     <li><a href="/profile/{{ username }}">{{username}}</a></li>
+                     <li><a href="/home_template">Home</a></li>
                     {{ nav_link('logout', 'Sign Out') }}
             {% else %}
                     {{ nav_link('login_template', 'Sign IN') }}

@@ -1,3 +1,6 @@
 Message,Messege_id,Negative,Positive,Username,datetime
 tweets about football,<sqlite3.Row object at 0x7f32157d4a70>,b'0.2',b'0.4',Redalert,2018-11-09 13:25:08.302632
 tweets about football,<sqlite3.Row object at 0x7f32157d4a70>,b'0.2',b'0.4',Redalert,2018-11-09 13:25:08.302632
+tweets about football,<sqlite3.Row object at 0x7ff256b0dd50>,b'0.2',b'0.4',Redalert,2018-11-10 06:10:07.853021
+Collection updates through tweets ,<sqlite3.Row object at 0x7f7204a7fb30>,b'0.2',b'0.4',SmokeStream,2018-11-15 14:42:00.571761
+testing out without old html........,<sqlite3.Row object at 0x7f4b5c1cd5b0>,b'0.2',b'0.4',SmokeStream,2018-11-15 15:15:44.880073

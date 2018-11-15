@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+    <div class="col-xs-4"> <h1> {{ username }}</h1>
+       </div>
+        <div><hr>
+            <br/>
+            <br/>
+               <nav class="col-xs-4 navbar navbar-default">
+  <div class="container-fluid">
+
+
+<table>
+      <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp</td>
+      <td style="text-align:center;">Messages</td>
+      <td> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp</td>
+      </tr>
+      <tr>
+      {% if messages|length > 0 %}
+          <td>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp</td>
+          <td style="text-align:center;">{{messages|length }}</td>
+      {% else %}
+          <td style="text-align:center;">0</td>
+          {% endif %}
+          <td> </td>
+
+
+      </tr>
+  </table>
+  </div>
+        </nav>
+    </div>
+    </div>
+        <hr style="height:2px; color:#cdd0d4;">
+<div class="row">
+    <div class="col-xs-4">
+            <label>First Name:</label>
+            <p>{{results["first_name"]}}</p>
+            <label>Last Name:</label>
+            <p>{{results["last_name"]}}</p>
+            <label>Username:</label>
+            <p>{{results["username"]}}</p>
+            <label>Email:</label>
+            <p>{{results["email"]}}</p>
+            <label>Mobile Number:</label>
+            <p>{{results["phone"]}}</p>
+            <div class="col-xs-6">
+                <br/>
+            <a href="/edit_profile"><button type="submit" class="btn">Edit Profile</button></a>
+            </div>
+                <hr>
+        </div>
+<div class="col-xs-8">{% if messages|length > 0 %}
+            <p>{{ messages[1]}}</p>
+            <p>{{ messages[2]}}</p>
+            <p>{{messages[3]}}</p>
+            <hr>
+    {% else %}
+        <h4>There aren't any posts yet!</h4>
+    {% endif %}</div>
+    </div>
+</div>
+{% endblock %}
